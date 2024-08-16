@@ -1,8 +1,4 @@
 ---
-title: Welcome to my blog
+title: "blog1"
+date: 2024-08-15
 ---
-
----
-Blog Post 1: The Initial Idea: tbd
----
-
