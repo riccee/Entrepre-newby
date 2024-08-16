@@ -20,18 +20,10 @@ And for the competitors:
 domains = [d.get_text(strip=True) for d in soup.find_all('a', {"class": 'wa-competitors-card__website-title'})]
 ```
 
-How I use aiohttp to retireve the slug for certain websites:
+How I utlized asyncio to speed up code when running other functions:
 ```python
-async def fetch(session, url, payload, headers):
-    async with session.post(url, json=payload, headers=headers) as response:
-        return await response.json()
-
-async with aiohttp.ClientSession() as session:
-        response = await fetch(session, url, payload, headers)
-        try:
-            slug = response['data']['searchCompanies'][0]['slug']
-        except (KeyError, IndexError):
-            return []
+tasks = [search_employees(domain) for domain in domains]
+totalEmployees = await asyncio.gather(*tasks)
 ```
 How the data is organized and returned:
 ```python
